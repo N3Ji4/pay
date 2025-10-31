@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayWave - Modern Payment Gateway</title>
+    <title>PayWave - Payment Gateway</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -16,53 +16,25 @@
         :root {
             --primary: #667eea;
             --primary-dark: #5a6fd8;
-            --primary-light: #a3b4ff;
             --success: #10b981;
-            --success-dark: #059669;
             --warning: #f59e0b;
-            --warning-dark: #d97706;
-            --danger: #ef4444;
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
-            --text-light: #9ca3af;
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
             --bg-card: #ffffff;
             --border: #e5e7eb;
-            --border-light: #f1f5f9;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             
-            /* Payment Method Colors */
+            /* Payment Colors */
             --gopay: #00AA5B;
-            --gopay-dark: #008c4d;
-            --gopay-light: #e6f4ee;
             --ovo: #4C2A86;
-            --ovo-dark: #3a1f68;
-            --ovo-light: #f0ebf7;
             --dana: #108EE9;
-            --dana-dark: #0d7bc9;
-            --dana-light: #e8f4fd;
-            --shopeepay: #FF5C00;
-            --shopeepay-dark: #e55300;
-            --shopeepay-light: #ffeae0;
             --allpay: #8B5CF6;
-            --allpay-dark: #7C3AED;
-            --allpay-light: #f3f0ff;
-            
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --gradient-gopay: linear-gradient(135deg, #00AA5B 0%, #008c4d 100%);
-            --gradient-ovo: linear-gradient(135deg, #4C2A86 0%, #3a1f68 100%);
-            --gradient-dana: linear-gradient(135deg, #108EE9 0%, #0d7bc9 100%);
-            --gradient-shopeepay: linear-gradient(135deg, #FF5C00 0%, #e55300 100%);
-            --gradient-allpay: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
             
             /* Screenshot Colors */
-            --screenshot-bg: linear-gradient(135deg, #fff9db 0%, #fff3bf 100%);
+            --screenshot-bg: #fff9db;
             --screenshot-border: #ffd43b;
             --screenshot-accent: #f59f00;
         }
@@ -70,24 +42,21 @@
         [data-theme="dark"] {
             --text-primary: #f9fafb;
             --text-secondary: #d1d5db;
-            --text-light: #9ca3af;
             --bg-primary: #111827;
             --bg-secondary: #1f2937;
             --bg-card: #374151;
             --border: #4b5563;
-            --border-light: #374151;
-            --screenshot-bg: linear-gradient(135deg, #2d1f00 0%, #4a3c00 100%);
+            --screenshot-bg: #2d1f00;
             --screenshot-border: #f59f00;
             --screenshot-accent: #ffd43b;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: var(--text-primary);
-            transition: all 0.3s ease;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .container {
@@ -101,60 +70,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 1rem 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 28px;
+            gap: 0.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: white;
         }
 
         .logo i {
             color: #10b981;
-            font-size: 32px;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .secure-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
         }
 
         .theme-toggle {
             background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
-            width: 44px;
-            height: 44px;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
         }
 
         /* Main Content */
@@ -163,55 +107,40 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 1rem;
         }
 
         .payment-section {
             background: var(--bg-card);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow-xl);
-            max-width: 500px;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 28rem;
             width: 100%;
-            animation: slideUp 0.6s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .payment-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 1.5rem;
         }
 
         .payment-header h1 {
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
         }
 
         .payment-header p {
             color: var(--text-secondary);
-            font-size: 16px;
+            font-size: 0.875rem;
         }
 
-        /* Payment Methods Grid */
+        /* Payment Methods */
         .payment-methods {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         @media (max-width: 480px) {
@@ -223,24 +152,21 @@
         .method-card {
             display: flex;
             align-items: center;
-            padding: 20px;
+            padding: 1rem;
             border: 2px solid var(--border);
-            border-radius: 16px;
+            border-radius: 0.75rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             background: var(--bg-card);
-            position: relative;
         }
 
         .method-card:hover {
             border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
         }
 
         .method-card.active {
             border-color: var(--primary);
-            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(102, 126, 234, 0.1) 100%);
+            background: rgba(102, 126, 234, 0.05);
         }
 
         .method-card.coming-soon {
@@ -248,51 +174,31 @@
             cursor: not-allowed;
         }
 
-        .method-card.coming-soon:hover {
-            transform: none;
-            border-color: var(--border);
-        }
-
         .method-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 20px;
+            margin-right: 0.75rem;
             color: white;
+            font-size: 1.125rem;
         }
 
-        .method-icon.gopay {
-            background: var(--gradient-gopay);
-        }
-
-        .method-icon.ovo {
-            background: var(--gradient-ovo);
-        }
-
-        .method-icon.dana {
-            background: var(--gradient-dana);
-        }
-
-        .method-icon.shopeepay {
-            background: var(--gradient-shopeepay);
-        }
-
-        .method-icon.allpay {
-            background: var(--gradient-allpay);
-        }
+        .method-icon.gopay { background: var(--gopay); }
+        .method-icon.ovo { background: var(--ovo); }
+        .method-icon.dana { background: var(--dana); }
+        .method-icon.allpay { background: var(--allpay); }
 
         .method-info h3 {
-            font-size: 16px;
+            font-size: 0.875rem;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 0.125rem;
         }
 
         .method-info p {
-            font-size: 14px;
+            font-size: 0.75rem;
             color: var(--text-secondary);
         }
 
@@ -300,7 +206,6 @@
             margin-left: auto;
             color: var(--success);
             opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .method-card.active .method-check {
@@ -308,87 +213,76 @@
         }
 
         .coming-soon-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
             background: var(--warning);
             color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
 
         /* Payment Details */
         .payment-details {
             background: var(--bg-secondary);
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid var(--border-light);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
         }
 
         .details-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .details-header h3 {
-            font-size: 18px;
+            font-size: 1rem;
             font-weight: 600;
         }
 
         .method-badge {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
+            gap: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: white;
         }
 
-        .method-badge.gopay {
-            background: var(--gradient-gopay);
-        }
-
-        .method-badge.ovo {
-            background: var(--gradient-ovo);
-        }
-
-        .method-badge.dana {
-            background: var(--gradient-dana);
-        }
-
-        .method-badge.allpay {
-            background: var(--gradient-allpay);
-        }
+        .method-badge.gopay { background: var(--gopay); }
+        .method-badge.ovo { background: var(--ovo); }
+        .method-badge.dana { background: var(--dana); }
+        .method-badge.allpay { background: var(--allpay); }
 
         /* Payment Info */
         .payment-info {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .info-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
+            padding: 0.75rem;
             background: white;
-            border-radius: 12px;
+            border-radius: 0.5rem;
             border: 1px solid var(--border);
         }
 
         .info-label {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
             font-weight: 500;
+            font-size: 0.875rem;
         }
 
         .info-label i {
@@ -398,292 +292,158 @@
         .info-value {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0.5rem;
             font-weight: 600;
+            font-size: 0.875rem;
         }
 
         #paymentNumber {
             font-family: 'Courier New', monospace;
-            font-size: 16px;
         }
 
         .copy-btn {
-            background: var(--gradient-primary);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 0.25rem;
         }
 
         .copy-btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-1px);
         }
 
-        .status-available {
-            color: var(--success);
+        /* ULTRA COMPACT SCREENSHOT REMINDER */
+        .screenshot-reminder {
+            background: var(--screenshot-bg);
+            border: 2px solid var(--screenshot-border);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 0.75rem;
+        }
+
+        .screenshot-icon {
+            width: 2rem;
+            height: 2rem;
+            background: var(--screenshot-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .screenshot-content {
+            flex: 1;
+        }
+
+        .screenshot-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--screenshot-accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .screenshot-desc {
+            font-size: 0.75rem;
+            color: var(--screenshot-accent);
+            opacity: 0.9;
         }
 
         /* QRIS Display */
         .qris-display {
             text-align: center;
+            margin-bottom: 1rem;
         }
 
         .qris-image-container {
-            position: relative;
             background: white;
-            padding: 30px;
-            border-radius: 16px;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             border: 2px dashed var(--border);
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .qris-image-container:hover {
-            border-color: var(--allpay);
+            margin-bottom: 1rem;
+            max-width: 16rem;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .qris-image {
-            max-width: 250px;
-            width: 100%;
-            border-radius: 12px;
+            max-width: 100%;
+            border-radius: 0.5rem;
         }
 
-        .qris-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-allpay);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            border-radius: 16px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .qris-image-container:hover .qris-overlay {
-            opacity: 0.9;
-        }
-
-        /* ENHANCED SCREENSHOT REMINDER */
-        .screenshot-reminder {
-            background: var(--screenshot-bg);
-            border: 3px solid var(--screenshot-border);
-            border-radius: 16px;
-            padding: 25px;
-            margin: 25px 0;
-            position: relative;
-            overflow: hidden;
-            animation: gentlePulse 3s ease-in-out infinite;
-        }
-
-        @keyframes gentlePulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 212, 59, 0.4);
-            }
-            50% { 
-                transform: scale(1.01);
-                box-shadow: 0 0 0 10px rgba(255, 212, 59, 0);
-            }
-        }
-
-        .screenshot-reminder::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--screenshot-border);
-        }
-
-        .screenshot-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .screenshot-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--screenshot-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: white;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .screenshot-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--screenshot-accent);
-            margin: 0;
-        }
-
-        .screenshot-content {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 15px;
-            align-items: start;
-        }
-
-        .screenshot-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .screenshot-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .step-number {
-            width: 24px;
-            height: 24px;
-            background: var(--screenshot-accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .screenshot-importance {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--screenshot-accent);
-        }
-
-        .importance-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--screenshot-accent);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .importance-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .importance-list li {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 5px;
-            padding-left: 15px;
-            position: relative;
-        }
-
-        .importance-list li::before {
-            content: '•';
-            color: var(--screenshot-accent);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .screenshot-note {
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            border: 1px dashed var(--screenshot-border);
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--screenshot-accent);
-        }
-
+        /* Instructions */
         .instructions {
             background: white;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--primary);
         }
 
         .instructions h4 {
-            margin-bottom: 12px;
-            font-size: 16px;
+            font-size: 0.875rem;
             font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .instructions ol {
-            padding-left: 20px;
+            padding-left: 1rem;
             color: var(--text-secondary);
+            font-size: 0.75rem;
         }
 
         .instructions li {
-            margin-bottom: 8px;
+            margin-bottom: 0.25rem;
         }
 
         /* Footer */
         .footer {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 20px 40px;
+            padding: 1rem 1.5rem;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 0.75rem;
             align-items: center;
             color: white;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
         }
 
         .footer p {
             opacity: 0.8;
+            font-size: 0.75rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
         }
 
         .footer-links a {
             color: white;
             text-decoration: none;
             opacity: 0.8;
-            transition: opacity 0.3s ease;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 0.25rem;
         }
 
         .footer-links a:hover {
@@ -693,19 +453,20 @@
         /* Notification */
         .notification {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 1rem;
+            right: 1rem;
             background: var(--success);
             color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
             box-shadow: var(--shadow-lg);
             transform: translateX(400px);
             transition: transform 0.3s ease;
             z-index: 1000;
+            font-size: 0.875rem;
         }
 
         .notification.show {
@@ -727,7 +488,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            padding: 20px;
+            padding: 1rem;
         }
 
         .modal.show {
@@ -737,8 +498,8 @@
 
         .modal-content {
             background: var(--bg-card);
-            border-radius: 20px;
-            max-width: 500px;
+            border-radius: 1rem;
+            max-width: 20rem;
             width: 100%;
             transform: scale(0.7);
             transition: transform 0.3s ease;
@@ -749,7 +510,7 @@
         }
 
         .modal-header {
-            padding: 20px;
+            padding: 1rem;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -759,50 +520,14 @@
         .close-modal {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 1.25rem;
             cursor: pointer;
             color: var(--text-secondary);
         }
 
         .modal-body {
-            padding: 30px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-            
-            .payment-section {
-                padding: 25px;
-            }
-            
-            .info-item {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .screenshot-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .screenshot-steps {
-                gap: 6px;
-            }
-            
-            .screenshot-step {
-                padding: 6px 10px;
-                font-size: 13px;
-            }
+            padding: 1.5rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -814,15 +539,9 @@
                 <i class="fas fa-bolt"></i>
                 <span>PayWave</span>
             </div>
-            <div class="header-actions">
-                <div class="secure-badge">
-                    <i class="fas fa-lock"></i>
-                    Secure Payment
-                </div>
-                <button class="theme-toggle" id="themeBtn">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
+            <button class="theme-toggle" id="themeBtn">
+                <i class="fas fa-moon"></i>
+            </button>
         </header>
 
         <!-- Main Content -->
@@ -833,9 +552,8 @@
                     <p>Pilih metode pembayaran favorit Anda</p>
                 </div>
 
-                <!-- Payment Methods Grid -->
+                <!-- Payment Methods -->
                 <div class="payment-methods">
-                    <!-- Gopay -->
                     <div class="method-card active" data-method="gopay">
                         <div class="method-icon gopay">
                             <i class="fab fa-google-wallet"></i>
@@ -849,7 +567,6 @@
                         </div>
                     </div>
 
-                    <!-- OVO -->
                     <div class="method-card" data-method="ovo">
                         <div class="method-icon ovo">
                             <i class="fas fa-mobile-alt"></i>
@@ -863,7 +580,6 @@
                         </div>
                     </div>
 
-                    <!-- Dana -->
                     <div class="method-card" data-method="dana">
                         <div class="method-icon dana">
                             <i class="fas fa-wallet"></i>
@@ -877,9 +593,8 @@
                         </div>
                     </div>
 
-                    <!-- Shopee Pay (Coming Soon) -->
                     <div class="method-card coming-soon" data-method="shopeepay">
-                        <div class="method-icon shopeepay">
+                        <div class="method-icon" style="background: #FF5C00;">
                             <i class="fas fa-shopping-bag"></i>
                         </div>
                         <div class="method-info">
@@ -891,7 +606,6 @@
                         </div>
                     </div>
 
-                    <!-- AllPay QRIS -->
                     <div class="method-card" data-method="allpay">
                         <div class="method-icon allpay">
                             <i class="fas fa-qrcode"></i>
@@ -916,52 +630,17 @@
                         </div>
                     </div>
 
-                    <!-- Payment Info Container -->
-                    <div id="paymentContainer">
-                        <!-- Content akan diisi oleh JavaScript -->
-                    </div>
+                    <!-- Payment Container -->
+                    <div id="paymentContainer"></div>
 
-                    <!-- Screenshot Reminder -->
+                    <!-- Ultra Compact Screenshot Reminder -->
                     <div class="screenshot-reminder">
-                        <div class="screenshot-header">
-                            <div class="screenshot-icon">
-                                <i class="fas fa-camera"></i>
-                            </div>
-                            <h3 class="screenshot-title">📸 Screenshot Bukti Pembayaran</h3>
+                        <div class="screenshot-icon">
+                            <i class="fas fa-camera"></i>
                         </div>
-                        
                         <div class="screenshot-content">
-                            <div class="screenshot-steps">
-                                <div class="screenshot-step">
-                                    <div class="step-number">1</div>
-                                    <span>Setelah transfer berhasil</span>
-                                </div>
-                                <div class="screenshot-step">
-                                    <div class="step-number">2</div>
-                                    <span>Ambil screenshot bukti transfer</span>
-                                </div>
-                                <div class="screenshot-step">
-                                    <div class="step-number">3</div>
-                                    <span>Kirim ke admin untuk konfirmasi</span>
-                                </div>
-                            </div>
-                            
-                            <div class="screenshot-importance">
-                                <div class="importance-title">
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    Mengapa Penting?
-                                </div>
-                                <ul class="importance-list">
-                                    <li>Sebagai bukti pembayaran sah</li>
-                                    <li>Mempercepat proses konfirmasi</li>
-                                    <li>Menghindari kesalahan data</li>
-                                    <li>Backup untuk customer service</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="screenshot-note">
-                            ⚠️ Tanpa screenshot, proses mungkin tertunda
+                            <div class="screenshot-text">📸 Screenshot Bukti Bayar</div>
+                            <div class="screenshot-desc">Kirim ke admin untuk konfirmasi cepat</div>
                         </div>
                     </div>
                 </div>
@@ -974,7 +653,6 @@
             <div class="footer-links">
                 <a href="#"><i class="fas fa-shield-alt"></i> Security</a>
                 <a href="#"><i class="fas fa-question-circle"></i> Help</a>
-                <a href="#"><i class="fas fa-envelope"></i> Contact</a>
             </div>
         </footer>
     </div>
@@ -1019,17 +697,8 @@
                 feature: 'QRIS',
                 color: 'allpay',
                 type: 'qris',
-                qrImage: 'allpay-qris.jpg', // Ganti dengan path gambar QRIS kamu
+                qrImage: 'allpay-qris.jpg',
                 enabled: true
-            },
-            shopeepay: {
-                number: 'Coming Soon',
-                name: 'Your Name',
-                app: 'Shopee',
-                feature: 'Shopee Pay',
-                color: 'shopeepay',
-                type: 'number',
-                enabled: false
             }
         };
 
@@ -1042,7 +711,7 @@
             init() {
                 this.initTheme();
                 this.initPaymentMethods();
-                this.updatePaymentDisplay(); // Initialize display
+                this.updatePaymentDisplay();
             }
 
             initTheme() {
@@ -1071,15 +740,13 @@
                 const methodCards = document.querySelectorAll('.method-card');
                 
                 methodCards.forEach(card => {
-                    const method = card.dataset.method;
-                    const methodData = paymentData[method];
-                    
-                    if (card.classList.contains('coming-soon') && !methodData.enabled) {
+                    if (card.classList.contains('coming-soon')) {
                         card.addEventListener('click', () => {
                             this.showNotification('Shopee Pay akan segera hadir!', 'info');
                         });
                     } else {
                         card.addEventListener('click', () => {
+                            const method = card.dataset.method;
                             this.switchPaymentMethod(method);
                         });
                     }
@@ -1087,34 +754,25 @@
             }
 
             switchPaymentMethod(method) {
-                // Remove active class from all cards
                 document.querySelectorAll('.method-card').forEach(card => {
                     card.classList.remove('active');
                 });
 
-                // Add active class to selected card
-                const selectedCard = document.querySelector(`[data-method="${method}"]`);
-                selectedCard.classList.add('active');
-                
-                // Update current method
+                document.querySelector(`[data-method="${method}"]`).classList.add('active');
                 this.currentMethod = method;
-                
-                // Update payment display
                 this.updatePaymentDisplay();
             }
 
             updatePaymentDisplay() {
                 const data = paymentData[this.currentMethod];
-                const paymentContainer = document.getElementById('paymentContainer');
+                const container = document.getElementById('paymentContainer');
                 
-                // Update method badge
                 this.updateMethodBadge(data);
                 
-                // Update payment content based on type
                 if (data.type === 'qris' && data.enabled) {
-                    this.showQRISDisplay(data, paymentContainer);
+                    this.showQRISDisplay(data, container);
                 } else {
-                    this.showNumberDisplay(data, paymentContainer);
+                    this.showNumberDisplay(data, container);
                 }
             }
 
@@ -1124,7 +782,7 @@
                         <div class="info-item">
                             <div class="info-label">
                                 <i class="fas fa-phone"></i>
-                                Nomor Pembayaran
+                                Nomor
                             </div>
                             <div class="info-value">
                                 <span id="paymentNumber">${data.number}</span>
@@ -1138,21 +796,10 @@
                         <div class="info-item">
                             <div class="info-label">
                                 <i class="fas fa-user"></i>
-                                Nama Penerima
+                                Nama
                             </div>
                             <div class="info-value">
                                 <span>${data.name}</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-info-circle"></i>
-                                Status
-                            </div>
-                            <div class="info-value status-available">
-                                <i class="fas fa-check-circle"></i>
-                                Tersedia
                             </div>
                         </div>
                     </div>
@@ -1160,11 +807,11 @@
                     <div class="instructions">
                         <h4>Cara Pembayaran:</h4>
                         <ol>
-                            <li>Buka aplikasi <strong>${data.app}</strong></li>
+                            <li>Buka <strong>${data.app}</strong></li>
                             <li>Pilih <strong>${data.feature}</strong></li>
                             <li>Masukkan nomor <strong>${data.number}</strong></li>
                             <li>Konfirmasi pembayaran</li>
-                            <li><strong>Screenshot bukti transfer</strong> dan kirim ke admin</li>
+                            <li><strong>Screenshot bukti</strong> & kirim</li>
                         </ol>
                     </div>
                 `;
@@ -1176,53 +823,38 @@
                         <div class="info-item">
                             <div class="info-label">
                                 <i class="fas fa-qrcode"></i>
-                                QR Code Pembayaran
+                                QR Code
                             </div>
                             <div class="info-value">
-                                <span>Scan QR Code Below</span>
+                                <span>Scan di bawah</span>
                             </div>
                         </div>
 
                         <div class="info-item">
                             <div class="info-label">
                                 <i class="fas fa-user"></i>
-                                Nama Penerima
+                                Nama
                             </div>
                             <div class="info-value">
                                 <span>${data.name}</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-info-circle"></i>
-                                Status
-                            </div>
-                            <div class="info-value status-available">
-                                <i class="fas fa-check-circle"></i>
-                                Tersedia
                             </div>
                         </div>
                     </div>
 
                     <div class="qris-display">
                         <div class="qris-image-container" onclick="showQRISModal()">
-                            <img src="${data.qrImage}" alt="AllPay QRIS Code" class="qris-image">
-                            <div class="qris-overlay">
-                                <i class="fas fa-expand"></i>
-                                Click to Zoom
-                            </div>
+                            <img src="${data.qrImage}" alt="QRIS Code" class="qris-image">
                         </div>
                     </div>
 
                     <div class="instructions">
-                        <h4>Cara Bayar dengan AllPay QRIS:</h4>
+                        <h4>Cara Bayar:</h4>
                         <ol>
-                            <li>Buka aplikasi <strong>${data.app}</strong></li>
-                            <li>Pilih fitur <strong>Scan QR Code</strong></li>
-                            <li>Arahkan kamera ke QR code di atas</li>
+                            <li>Buka <strong>${data.app}</strong></li>
+                            <li>Pilih <strong>Scan QR</strong></li>
+                            <li>Arahkan ke QR code</li>
                             <li>Konfirmasi pembayaran</li>
-                            <li><strong>Screenshot bukti pembayaran</strong> dan kirim ke admin</li>
+                            <li><strong>Screenshot bukti</strong> & kirim</li>
                         </ol>
                     </div>
                 `;
@@ -1233,7 +865,7 @@
                 methodBadge.className = `method-badge ${data.color}`;
                 methodBadge.innerHTML = `
                     <i class="fas fa-${this.getMethodIcon(this.currentMethod)}"></i>
-                    ${this.currentMethod === 'allpay' ? 'AllPay QRIS' : this.currentMethod.toUpperCase()}
+                    ${this.currentMethod === 'allpay' ? 'QRIS' : this.currentMethod.toUpperCase()}
                 `;
             }
 
@@ -1242,42 +874,28 @@
                     gopay: 'google-wallet',
                     ovo: 'mobile-alt', 
                     dana: 'wallet',
-                    shopeepay: 'shopping-bag',
                     allpay: 'qrcode'
                 };
-                return icons[method] || 'wallet';
+                return icons[method];
             }
 
             copyToClipboard(text) {
-                if (text !== 'Coming Soon' && text !== 'Scan QR Code Below') {
-                    navigator.clipboard.writeText(text).then(() => {
-                        this.showNotification(`Nomor ${text} berhasil disalin!`);
-                    }).catch(err => {
-                        // Fallback
-                        const textArea = document.createElement('textarea');
-                        textArea.value = text;
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        this.showNotification(`Nomor ${text} berhasil disalin!`);
-                    });
-                }
+                navigator.clipboard.writeText(text).then(() => {
+                    this.showNotification(`Nomor ${text} disalin!`);
+                });
             }
 
             showNotification(message, type = 'success') {
                 const notification = document.getElementById('notification');
                 notification.innerHTML = `<i class="fas fa-${type === 'info' ? 'info-circle' : 'check-circle'}"></i><span>${message}</span>`;
-                notification.style.background = type === 'info' ? 'var(--warning)' : 'var(--success)';
                 notification.classList.add('show');
                 
                 setTimeout(() => {
                     notification.classList.remove('show');
-                }, 3000);
+                }, 2000);
             }
         }
 
-        // Global functions
         function showQRISModal() {
             const data = paymentData.allpay;
             const modal = document.createElement('div');
@@ -1285,28 +903,19 @@
             modal.innerHTML = `
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3>AllPay QRIS</h3>
+                        <h3>QRIS Payment</h3>
                         <button class="close-modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <img src="${data.qrImage}" alt="AllPay QRIS" style="max-width: 300px; width: 100%; border-radius: 10px;">
-                        </div>
-                        <div class="screenshot-reminder" style="margin: 20px 0;">
-                            <i class="fas fa-camera"></i>
-                            <h4>📸 Jangan Lupa Screenshot!</h4>
-                            <p><strong>Screenshot bukti pembayaran setelah transfer</strong></p>
-                            <p>Kirim ke admin untuk konfirmasi</p>
-                        </div>
-                        <div class="instructions">
-                            <h4>Scan QR Code Ini:</h4>
-                            <ol>
-                                <li>Buka aplikasi e-wallet atau mobile banking</li>
-                                <li>Pilih fitur scan QRIS</li>
-                                <li>Arahkan kamera ke QR code</li>
-                                <li>Konfirmasi pembayaran</li>
-                                <li><strong>Screenshot bukti pembayaran</strong></li>
-                            </ol>
+                        <img src="${data.qrImage}" alt="QRIS" style="max-width: 100%; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <div class="screenshot-reminder">
+                            <div class="screenshot-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="screenshot-content">
+                                <div class="screenshot-text">Jangan Lupa Screenshot!</div>
+                                <div class="screenshot-desc">Kirim bukti ke admin</div>
+                            </div>
                         </div>
                     </div>
                 </div>
