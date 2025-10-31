@@ -511,12 +511,6 @@
             right: 0;
             height: 4px;
             background: var(--screenshot-border);
-            animation: shimmer 2s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
         }
 
         .screenshot-header {
@@ -922,45 +916,12 @@
                         </div>
                     </div>
 
-                    <div class="payment-info" id="paymentInfo">
-                        <!-- Default Gopay -->
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-phone"></i>
-                                Nomor Pembayaran
-                            </div>
-                            <div class="info-value">
-                                <span id="paymentNumber">08551271103</span>
-                                <button class="copy-btn">
-                                    <i class="fas fa-copy"></i>
-                                    Copy
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-user"></i>
-                                Nama Penerima
-                            </div>
-                            <div class="info-value">
-                                <span id="accountName">Your Name</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-label">
-                                <i class="fas fa-info-circle"></i>
-                                Status
-                            </div>
-                            <div class="info-value status-available">
-                                <i class="fas fa-check-circle"></i>
-                                Tersedia
-                            </div>
-                        </div>
+                    <!-- Payment Info Container -->
+                    <div id="paymentContainer">
+                        <!-- Content akan diisi oleh JavaScript -->
                     </div>
 
-                    <!-- ENHANCED SCREENSHOT REMINDER -->
+                    <!-- Screenshot Reminder -->
                     <div class="screenshot-reminder">
                         <div class="screenshot-header">
                             <div class="screenshot-icon">
@@ -1002,17 +963,6 @@
                         <div class="screenshot-note">
                             ⚠️ Tanpa screenshot, proses mungkin tertunda
                         </div>
-                    </div>
-
-                    <div class="instructions" id="instructions">
-                        <h4>Cara Pembayaran:</h4>
-                        <ol>
-                            <li>Buka aplikasi <strong>Gojek</strong></li>
-                            <li>Pilih <strong>Gopay</strong></li>
-                            <li>Masukkan nomor <strong>08551271103</strong></li>
-                            <li>Konfirmasi pembayaran</li>
-                            <li><strong>Screenshot bukti transfer</strong> dan kirim ke admin</li>
-                        </ol>
                     </div>
                 </div>
             </section>
@@ -1092,7 +1042,7 @@
             init() {
                 this.initTheme();
                 this.initPaymentMethods();
-                this.initCopyButtons();
+                this.updatePaymentDisplay(); // Initialize display
             }
 
             initTheme() {
@@ -1137,72 +1087,254 @@
             }
 
             switchPaymentMethod(method) {
+                // Remove active class from all cards
                 document.querySelectorAll('.method-card').forEach(card => {
                     card.classList.remove('active');
                 });
 
+                // Add active class to selected card
                 const selectedCard = document.querySelector(`[data-method="${method}"]`);
                 selectedCard.classList.add('active');
                 
+                // Update current method
                 this.currentMethod = method;
+                
+                // Update payment display
                 this.updatePaymentDisplay();
             }
 
             updatePaymentDisplay() {
                 const data = paymentData[this.currentMethod];
+                const paymentContainer = document.getElementById('paymentContainer');
                 
-                if (data.type === 'qris' && data.enabled) {
-                    this.showQRISDisplay(data);
-                } else {
-                    this.showNumberDisplay(data);
-                }
-                
-                document.getElementById('accountName').textContent = data.name;
+                // Update method badge
                 this.updateMethodBadge(data);
+                
+                // Update payment content based on type
+                if (data.type === 'qris' && data.enabled) {
+                    this.showQRISDisplay(data, paymentContainer);
+                } else {
+                    this.showNumberDisplay(data, paymentContainer);
+                }
             }
 
-            showNumberDisplay(data) {
-                const paymentInfo = document.getElementById('paymentInfo');
-                const instructions = document.getElementById('instructions');
-                
-                paymentInfo.innerHTML = `
-                    <div class="info-item">
-                        <div class="info-label">
-                            <i class="fas fa-phone"></i>
-                            Nomor Pembayaran
+            showNumberDisplay(data, container) {
+                container.innerHTML = `
+                    <div class="payment-info">
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-phone"></i>
+                                Nomor Pembayaran
+                            </div>
+                            <div class="info-value">
+                                <span id="paymentNumber">${data.number}</span>
+                                <button class="copy-btn" onclick="paymentGateway.copyToClipboard('${data.number}')">
+                                    <i class="fas fa-copy"></i>
+                                    Copy
+                                </button>
+                            </div>
                         </div>
-                        <div class="info-value">
-                            <span id="paymentNumber">${data.number}</span>
-                            <button class="copy-btn">
-                                <i class="fas fa-copy"></i>
-                                Copy
-                            </button>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-user"></i>
+                                Nama Penerima
+                            </div>
+                            <div class="info-value">
+                                <span>${data.name}</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-info-circle"></i>
+                                Status
+                            </div>
+                            <div class="info-value status-available">
+                                <i class="fas fa-check-circle"></i>
+                                Tersedia
+                            </div>
                         </div>
                     </div>
 
-                    <div class="info-item">
-                        <div class="info-label">
-                            <i class="fas fa-user"></i>
-                            Nama Penerima
-                        </div>
-                        <div class="info-value">
-                            <span id="accountName">${data.name}</span>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-label">
-                            <i class="fas fa-info-circle"></i>
-                            Status
-                        </div>
-                        <div class="info-value status-available">
-                            <i class="fas fa-check-circle"></i>
-                            Tersedia
-                        </div>
+                    <div class="instructions">
+                        <h4>Cara Pembayaran:</h4>
+                        <ol>
+                            <li>Buka aplikasi <strong>${data.app}</strong></li>
+                            <li>Pilih <strong>${data.feature}</strong></li>
+                            <li>Masukkan nomor <strong>${data.number}</strong></li>
+                            <li>Konfirmasi pembayaran</li>
+                            <li><strong>Screenshot bukti transfer</strong> dan kirim ke admin</li>
+                        </ol>
                     </div>
                 `;
+            }
 
-                instructions.innerHTML = `
-                    <h4>Cara Pembayaran:</h4>
-                    <ol>
-                        <li>Buka aplikasi <strong>${data.app
+            showQRISDisplay(data, container) {
+                container.innerHTML = `
+                    <div class="payment-info">
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-qrcode"></i>
+                                QR Code Pembayaran
+                            </div>
+                            <div class="info-value">
+                                <span>Scan QR Code Below</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-user"></i>
+                                Nama Penerima
+                            </div>
+                            <div class="info-value">
+                                <span>${data.name}</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-info-circle"></i>
+                                Status
+                            </div>
+                            <div class="info-value status-available">
+                                <i class="fas fa-check-circle"></i>
+                                Tersedia
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qris-display">
+                        <div class="qris-image-container" onclick="showQRISModal()">
+                            <img src="${data.qrImage}" alt="AllPay QRIS Code" class="qris-image">
+                            <div class="qris-overlay">
+                                <i class="fas fa-expand"></i>
+                                Click to Zoom
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instructions">
+                        <h4>Cara Bayar dengan AllPay QRIS:</h4>
+                        <ol>
+                            <li>Buka aplikasi <strong>${data.app}</strong></li>
+                            <li>Pilih fitur <strong>Scan QR Code</strong></li>
+                            <li>Arahkan kamera ke QR code di atas</li>
+                            <li>Konfirmasi pembayaran</li>
+                            <li><strong>Screenshot bukti pembayaran</strong> dan kirim ke admin</li>
+                        </ol>
+                    </div>
+                `;
+            }
+
+            updateMethodBadge(data) {
+                const methodBadge = document.getElementById('currentMethod');
+                methodBadge.className = `method-badge ${data.color}`;
+                methodBadge.innerHTML = `
+                    <i class="fas fa-${this.getMethodIcon(this.currentMethod)}"></i>
+                    ${this.currentMethod === 'allpay' ? 'AllPay QRIS' : this.currentMethod.toUpperCase()}
+                `;
+            }
+
+            getMethodIcon(method) {
+                const icons = {
+                    gopay: 'google-wallet',
+                    ovo: 'mobile-alt', 
+                    dana: 'wallet',
+                    shopeepay: 'shopping-bag',
+                    allpay: 'qrcode'
+                };
+                return icons[method] || 'wallet';
+            }
+
+            copyToClipboard(text) {
+                if (text !== 'Coming Soon' && text !== 'Scan QR Code Below') {
+                    navigator.clipboard.writeText(text).then(() => {
+                        this.showNotification(`Nomor ${text} berhasil disalin!`);
+                    }).catch(err => {
+                        // Fallback
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        this.showNotification(`Nomor ${text} berhasil disalin!`);
+                    });
+                }
+            }
+
+            showNotification(message, type = 'success') {
+                const notification = document.getElementById('notification');
+                notification.innerHTML = `<i class="fas fa-${type === 'info' ? 'info-circle' : 'check-circle'}"></i><span>${message}</span>`;
+                notification.style.background = type === 'info' ? 'var(--warning)' : 'var(--success)';
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Global functions
+        function showQRISModal() {
+            const data = paymentData.allpay;
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>AllPay QRIS</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <img src="${data.qrImage}" alt="AllPay QRIS" style="max-width: 300px; width: 100%; border-radius: 10px;">
+                        </div>
+                        <div class="screenshot-reminder" style="margin: 20px 0;">
+                            <i class="fas fa-camera"></i>
+                            <h4>📸 Jangan Lupa Screenshot!</h4>
+                            <p><strong>Screenshot bukti pembayaran setelah transfer</strong></p>
+                            <p>Kirim ke admin untuk konfirmasi</p>
+                        </div>
+                        <div class="instructions">
+                            <h4>Scan QR Code Ini:</h4>
+                            <ol>
+                                <li>Buka aplikasi e-wallet atau mobile banking</li>
+                                <li>Pilih fitur scan QRIS</li>
+                                <li>Arahkan kamera ke QR code</li>
+                                <li>Konfirmasi pembayaran</li>
+                                <li><strong>Screenshot bukti pembayaran</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+
+            const closeBtn = modal.querySelector('.close-modal');
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 300);
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => modal.remove(), 300);
+                }
+            });
+        }
+
+        // Initialize
+        let paymentGateway;
+        document.addEventListener('DOMContentLoaded', () => {
+            paymentGateway = new PaymentGateway();
+            window.paymentGateway = paymentGateway;
+        });
+    </script>
+</body>
+</html>
