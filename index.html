@@ -1164,4 +1164,34 @@
                                 <li>Pilih fitur scan QRIS</li>
                                 <li>Arahkan kamera ke QR code</li>
                                 <li>Konfirmasi pembayaran</li>
-                                <li><strong>Screenshot bukti pembayaran</strong></
+                                <li><strong>Screenshot bukti pembayaran</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+
+            const closeBtn = modal.querySelector('.close-modal');
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 300);
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => modal.remove(), 300);
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            new PaymentGateway();
+        });
+    </script>
+</body>
+</html>
