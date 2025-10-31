@@ -1,0 +1,209 @@
+/* QRIS Display Styles */
+.qris-display {
+    text-align: center;
+}
+
+.qris-image-container {
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px dashed var(--border);
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.qris-image-container:hover {
+    border-color: var(--qris);
+    transform: scale(1.02);
+}
+
+.qris-image {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.qris-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 107, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.qris-image-container:hover .qris-overlay {
+    opacity: 1;
+}
+
+.qris-overlay i {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.qris-instructions {
+    text-align: left;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-qris-image {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.modal-qris-image img {
+    max-width: 300px;
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid var(--border);
+}
+
+.modal-instructions h4 {
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.modal-instructions ol {
+    padding-left: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.modal-instructions li {
+    margin-bottom: 8px;
+}
+
+.download-prompt {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border-left: 4px solid var(--qris);
+}
+
+.download-prompt p {
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--qris);
+}
+
+.btn-primary:hover {
+    background: #e55a00;
+}
+
+/* Responsive QRIS */
+@media (max-width: 768px) {
+    .qris-image {
+        max-width: 200px;
+    }
+    
+    .modal-content {
+        margin: 10px;
+    }
+    
+    .modal-qris-image img {
+        max-width: 250px;
+    }
+}

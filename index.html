@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway - Bayar Sekarang</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>SecurePay</span>
+            </div>
+            <div class="secure-badge">
+                <i class="fas fa-lock"></i>
+                100% Secure Payment
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Payment Section -->
+            <section class="payment-section">
+                <div class="payment-header">
+                    <h1>Select Payment Method</h1>
+                    <p>Pilih metode pembayaran yang kamu inginkan</p>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <!-- Gopay -->
+                    <div class="method-card active" data-method="gopay">
+                        <div class="method-icon gopay">
+                            <i class="fab fa-google-wallet"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Gopay</h3>
+                            <p>Bayar dengan Gopay</p>
+                        </div>
+                        <div class="method-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- OVO -->
+                    <div class="method-card" data-method="ovo">
+                        <div class="method-icon ovo">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>OVO</h3>
+                            <p>Bayar dengan OVO</p>
+                        </div>
+                        <div class="method-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Dana -->
+                    <div class="method-card" data-method="dana">
+                        <div class="method-icon dana">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Dana</h3>
+                            <p>Bayar dengan Dana</p>
+                        </div>
+                        <div class="method-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- QRIS -->
+                    <div class="method-card coming-soon" data-method="qris">
+                        <div class="method-icon qris">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>QRIS</h3>
+                            <p>Scan QR Code</p>
+                        </div>
+                        <div class="coming-soon-badge">
+                            Coming Soon
+                        </div>
+                        <!-- Method check akan ditambahkan oleh JavaScript ketika QRIS enabled -->
+                    </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="payment-details">
+                    <div class="details-header">
+                        <h3>Payment Details</h3>
+                        <div class="method-badge gopay" id="currentMethod">
+                            <i class="fab fa-google-wallet"></i>
+                            Gopay
+                        </div>
+                    </div>
+
+                    <!-- Payment Info - Akan diupdate oleh JavaScript -->
+                    <div class="payment-info">
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-phone"></i>
+                                Nomor Pembayaran
+                            </div>
+                            <div class="info-value">
+                                <span id="paymentNumber">08551271103</span>
+                                <button class="copy-btn" onclick="copyToClipboard()">
+                                    <i class="fas fa-copy"></i>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-user"></i>
+                                Nama Penerima
+                            </div>
+                            <div class="info-value">
+                                <span id="accountName">Your Name</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-info-circle"></i>
+                                Status
+                            </div>
+                            <div class="info-value status-available">
+                                <i class="fas fa-check-circle"></i>
+                                Tersedia
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructions - Akan diupdate oleh JavaScript -->
+                    <div class="instructions">
+                        <h4>Cara Pembayaran:</h4>
+                        <ol>
+                            <li>Buka aplikasi <strong id="appName">Gojek</strong></li>
+                            <li>Pilih <strong id="featureName">Gopay</strong></li>
+                            <li>Masukkan nomor <strong id="instructionNumber">08551271103</strong></li>
+                            <li>Konfirmasi pembayaran</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 SecurePay. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-shield-alt"></i> Security</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Nomor berhasil disalin!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
