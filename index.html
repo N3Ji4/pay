@@ -60,6 +60,11 @@
             --gradient-dana: linear-gradient(135deg, #108EE9 0%, #0d7bc9 100%);
             --gradient-shopeepay: linear-gradient(135deg, #FF5C00 0%, #e55300 100%);
             --gradient-allpay: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+            
+            /* Screenshot Colors */
+            --screenshot-bg: linear-gradient(135deg, #fff9db 0%, #fff3bf 100%);
+            --screenshot-border: #ffd43b;
+            --screenshot-accent: #f59f00;
         }
 
         [data-theme="dark"] {
@@ -71,6 +76,9 @@
             --bg-card: #374151;
             --border: #4b5563;
             --border-light: #374151;
+            --screenshot-bg: linear-gradient(135deg, #2d1f00 0%, #4a3c00 100%);
+            --screenshot-border: #f59f00;
+            --screenshot-accent: #ffd43b;
         }
 
         body {
@@ -472,38 +480,164 @@
             opacity: 0.9;
         }
 
-        /* Screenshot Reminder */
+        /* ENHANCED SCREENSHOT REMINDER */
         .screenshot-reminder {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-            border: 2px solid #ffd43b;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            animation: pulse 2s infinite;
+            background: var(--screenshot-bg);
+            border: 3px solid var(--screenshot-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+            animation: gentlePulse 3s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+        @keyframes gentlePulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 212, 59, 0.4);
+            }
+            50% { 
+                transform: scale(1.01);
+                box-shadow: 0 0 0 10px rgba(255, 212, 59, 0);
+            }
         }
 
-        .screenshot-reminder i {
-            color: #e67700;
-            font-size: 24px;
-            margin-bottom: 10px;
+        .screenshot-reminder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--screenshot-border);
+            animation: shimmer 2s ease-in-out infinite;
         }
 
-        .screenshot-reminder h4 {
-            color: #e67700;
-            margin-bottom: 8px;
-            font-size: 16px;
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
-        .screenshot-reminder p {
-            color: #8d6e00;
+        .screenshot-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .screenshot-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--screenshot-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .screenshot-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--screenshot-accent);
+            margin: 0;
+        }
+
+        .screenshot-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .screenshot-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .screenshot-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
             font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: var(--screenshot-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .screenshot-importance {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--screenshot-accent);
+        }
+
+        .importance-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--screenshot-accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .importance-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .importance-list li {
+            font-size: 13px;
+            color: var(--text-secondary);
             margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .importance-list li::before {
+            content: '•';
+            color: var(--screenshot-accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .screenshot-note {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            border: 1px dashed var(--screenshot-border);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--screenshot-accent);
         }
 
         .instructions {
@@ -655,10 +789,25 @@
                 gap: 10px;
             }
             
+            .screenshot-content {
+                grid-template-columns: 1fr;
+            }
+            
             .footer {
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .screenshot-steps {
+                gap: 6px;
+            }
+            
+            .screenshot-step {
+                padding: 6px 10px;
+                font-size: 13px;
             }
         }
     </style>
@@ -811,12 +960,48 @@
                         </div>
                     </div>
 
-                    <!-- Screenshot Reminder -->
+                    <!-- ENHANCED SCREENSHOT REMINDER -->
                     <div class="screenshot-reminder">
-                        <i class="fas fa-camera"></i>
-                        <h4>📸 Screenshot Bukti Pembayaran</h4>
-                        <p><strong>Jangan lupa screenshot bukti transfer!</strong></p>
-                        <p>Kirim screenshot ke admin untuk konfirmasi</p>
+                        <div class="screenshot-header">
+                            <div class="screenshot-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h3 class="screenshot-title">📸 Screenshot Bukti Pembayaran</h3>
+                        </div>
+                        
+                        <div class="screenshot-content">
+                            <div class="screenshot-steps">
+                                <div class="screenshot-step">
+                                    <div class="step-number">1</div>
+                                    <span>Setelah transfer berhasil</span>
+                                </div>
+                                <div class="screenshot-step">
+                                    <div class="step-number">2</div>
+                                    <span>Ambil screenshot bukti transfer</span>
+                                </div>
+                                <div class="screenshot-step">
+                                    <div class="step-number">3</div>
+                                    <span>Kirim ke admin untuk konfirmasi</span>
+                                </div>
+                            </div>
+                            
+                            <div class="screenshot-importance">
+                                <div class="importance-title">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    Mengapa Penting?
+                                </div>
+                                <ul class="importance-list">
+                                    <li>Sebagai bukti pembayaran sah</li>
+                                    <li>Mempercepat proses konfirmasi</li>
+                                    <li>Menghindari kesalahan data</li>
+                                    <li>Backup untuk customer service</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="screenshot-note">
+                            ⚠️ Tanpa screenshot, proses mungkin tertunda
+                        </div>
                     </div>
 
                     <div class="instructions" id="instructions">
@@ -826,7 +1011,7 @@
                             <li>Pilih <strong>Gopay</strong></li>
                             <li>Masukkan nomor <strong>08551271103</strong></li>
                             <li>Konfirmasi pembayaran</li>
-                            <li><strong>Screenshot bukti transfer</strong></li>
+                            <li><strong>Screenshot bukti transfer</strong> dan kirim ke admin</li>
                         </ol>
                     </div>
                 </div>
@@ -1020,178 +1205,4 @@
                 instructions.innerHTML = `
                     <h4>Cara Pembayaran:</h4>
                     <ol>
-                        <li>Buka aplikasi <strong>${data.app}</strong></li>
-                        <li>Pilih <strong>${data.feature}</strong></li>
-                        <li>Masukkan nomor <strong>${data.number}</strong></li>
-                        <li>Konfirmasi pembayaran</li>
-                        <li><strong>Screenshot bukti transfer</strong></li>
-                    </ol>
-                `;
-
-                this.initCopyButtons();
-            }
-
-            showQRISDisplay(data) {
-                const paymentInfo = document.getElementById('paymentInfo');
-                const instructions = document.getElementById('instructions');
-                
-                paymentInfo.innerHTML = `
-                    <div class="info-item">
-                        <div class="info-label">
-                            <i class="fas fa-qrcode"></i>
-                            QR Code Pembayaran
-                        </div>
-                        <div class="info-value">
-                            <span>Scan QR Code Below</span>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-label">
-                            <i class="fas fa-user"></i>
-                            Nama Penerima
-                        </div>
-                        <div class="info-value">
-                            <span id="accountName">${data.name}</span>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-label">
-                            <i class="fas fa-info-circle"></i>
-                            Status
-                        </div>
-                        <div class="info-value status-available">
-                            <i class="fas fa-check-circle"></i>
-                            Tersedia
-                        </div>
-                    </div>
-                `;
-
-                instructions.innerHTML = `
-                    <div class="qris-display">
-                        <div class="qris-image-container" onclick="showQRISModal()">
-                            <img src="${data.qrImage}" alt="AllPay QRIS Code" class="qris-image">
-                            <div class="qris-overlay">
-                                <i class="fas fa-expand"></i>
-                                Click to Zoom
-                            </div>
-                        </div>
-                        <div class="instructions">
-                            <h4>Cara Bayar dengan AllPay QRIS:</h4>
-                            <ol>
-                                <li>Buka aplikasi <strong>${data.app}</strong></li>
-                                <li>Pilih fitur <strong>Scan QR Code</strong></li>
-                                <li>Arahkan kamera ke QR code di atas</li>
-                                <li>Konfirmasi pembayaran</li>
-                                <li><strong>Screenshot bukti pembayaran</strong></li>
-                            </ol>
-                        </div>
-                    </div>
-                `;
-            }
-
-            updateMethodBadge(data) {
-                const methodBadge = document.getElementById('currentMethod');
-                methodBadge.className = `method-badge ${data.color}`;
-                methodBadge.innerHTML = `
-                    <i class="fas fa-${this.getMethodIcon(this.currentMethod)}"></i>
-                    ${this.currentMethod === 'allpay' ? 'AllPay QRIS' : this.currentMethod.toUpperCase()}
-                `;
-            }
-
-            getMethodIcon(method) {
-                const icons = {
-                    gopay: 'google-wallet',
-                    ovo: 'mobile-alt', 
-                    dana: 'wallet',
-                    shopeepay: 'shopping-bag',
-                    allpay: 'qrcode'
-                };
-                return icons[method] || 'wallet';
-            }
-
-            initCopyButtons() {
-                document.querySelectorAll('.copy-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const paymentNumber = document.getElementById('paymentNumber').textContent;
-                        if (paymentNumber !== 'Coming Soon' && paymentNumber !== 'Scan QR Code Below') {
-                            navigator.clipboard.writeText(paymentNumber).then(() => {
-                                this.showNotification(`Nomor ${paymentNumber} berhasil disalin!`);
-                            });
-                        }
-                    });
-                });
-            }
-
-            showNotification(message, type = 'success') {
-                const notification = document.getElementById('notification');
-                notification.innerHTML = `<i class="fas fa-${type === 'info' ? 'info-circle' : 'check-circle'}"></i><span>${message}</span>`;
-                notification.style.background = type === 'info' ? 'var(--warning)' : 'var(--success)';
-                notification.classList.add('show');
-                
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 3000);
-            }
-        }
-
-        // Global functions
-        function showQRISModal() {
-            const data = paymentData.allpay;
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>AllPay QRIS</h3>
-                        <button class="close-modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <img src="${data.qrImage}" alt="AllPay QRIS" style="max-width: 300px; width: 100%; border-radius: 10px;">
-                        </div>
-                        <div class="screenshot-reminder" style="margin: 20px 0;">
-                            <i class="fas fa-camera"></i>
-                            <h4>📸 Jangan Lupa Screenshot!</h4>
-                            <p><strong>Screenshot bukti pembayaran setelah transfer</strong></p>
-                            <p>Kirim ke admin untuk konfirmasi</p>
-                        </div>
-                        <div class="instructions">
-                            <h4>Scan QR Code Ini:</h4>
-                            <ol>
-                                <li>Buka aplikasi e-wallet atau mobile banking</li>
-                                <li>Pilih fitur scan QRIS</li>
-                                <li>Arahkan kamera ke QR code</li>
-                                <li>Konfirmasi pembayaran</li>
-                                <li><strong>Screenshot bukti pembayaran</strong></li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-            setTimeout(() => modal.classList.add('show'), 10);
-
-            const closeBtn = modal.querySelector('.close-modal');
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('show');
-                setTimeout(() => modal.remove(), 300);
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('show');
-                    setTimeout(() => modal.remove(), 300);
-                }
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            new PaymentGateway();
-        });
-    </script>
-</body>
-</html>
+                        <li>Buka aplikasi <strong>${data.app
