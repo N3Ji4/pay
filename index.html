@@ -60,17 +60,6 @@
             --gradient-dana: linear-gradient(135deg, #108EE9 0%, #0d7bc9 100%);
             --gradient-shopeepay: linear-gradient(135deg, #FF5C00 0%, #e55300 100%);
             --gradient-allpay: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
-            
-            /* Glass Morphism */
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            
-            /* Border Radius */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-            --radius-2xl: 24px;
         }
 
         [data-theme="dark"] {
@@ -105,9 +94,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .logo {
@@ -171,7 +160,7 @@
 
         .payment-section {
             background: var(--bg-card);
-            border-radius: var(--radius-2xl);
+            border-radius: 20px;
             padding: 40px;
             box-shadow: var(--shadow-xl);
             max-width: 500px;
@@ -228,7 +217,7 @@
             align-items: center;
             padding: 20px;
             border: 2px solid var(--border);
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
             background: var(--bg-card);
@@ -259,7 +248,7 @@
         .method-icon {
             width: 48px;
             height: 48px;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -325,7 +314,7 @@
         /* Payment Details */
         .payment-details {
             background: var(--bg-secondary);
-            border-radius: var(--radius-xl);
+            border-radius: 16px;
             padding: 25px;
             border: 1px solid var(--border-light);
         }
@@ -383,7 +372,7 @@
             align-items: center;
             padding: 15px;
             background: white;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
             border: 1px solid var(--border);
         }
 
@@ -415,7 +404,7 @@
             color: white;
             border: none;
             padding: 8px 16px;
-            border-radius: var(--radius-sm);
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             transition: all 0.3s ease;
@@ -445,7 +434,7 @@
             position: relative;
             background: white;
             padding: 30px;
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             border: 2px dashed var(--border);
             margin-bottom: 20px;
             cursor: pointer;
@@ -459,7 +448,7 @@
         .qris-image {
             max-width: 250px;
             width: 100%;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
         }
 
         .qris-overlay {
@@ -474,7 +463,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -483,10 +472,44 @@
             opacity: 0.9;
         }
 
+        /* Screenshot Reminder */
+        .screenshot-reminder {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #ffd43b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .screenshot-reminder i {
+            color: #e67700;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .screenshot-reminder h4 {
+            color: #e67700;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .screenshot-reminder p {
+            color: #8d6e00;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
         .instructions {
             background: white;
             padding: 20px;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
             border-left: 4px solid var(--primary);
         }
 
@@ -507,7 +530,7 @@
 
         /* Footer */
         .footer {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             padding: 20px 40px;
             display: flex;
@@ -547,7 +570,7 @@
             background: var(--success);
             color: white;
             padding: 15px 20px;
-            border-radius: var(--radius-lg);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -586,7 +609,7 @@
 
         .modal-content {
             background: var(--bg-card);
-            border-radius: var(--radius-xl);
+            border-radius: 20px;
             max-width: 500px;
             width: 100%;
             transform: scale(0.7);
@@ -788,6 +811,14 @@
                         </div>
                     </div>
 
+                    <!-- Screenshot Reminder -->
+                    <div class="screenshot-reminder">
+                        <i class="fas fa-camera"></i>
+                        <h4>📸 Screenshot Bukti Pembayaran</h4>
+                        <p><strong>Jangan lupa screenshot bukti transfer!</strong></p>
+                        <p>Kirim screenshot ke admin untuk konfirmasi</p>
+                    </div>
+
                     <div class="instructions" id="instructions">
                         <h4>Cara Pembayaran:</h4>
                         <ol>
@@ -795,6 +826,7 @@
                             <li>Pilih <strong>Gopay</strong></li>
                             <li>Masukkan nomor <strong>08551271103</strong></li>
                             <li>Konfirmasi pembayaran</li>
+                            <li><strong>Screenshot bukti transfer</strong></li>
                         </ol>
                     </div>
                 </div>
@@ -852,7 +884,7 @@
                 feature: 'QRIS',
                 color: 'allpay',
                 type: 'qris',
-                qrImage: 'allpay-qris.jpg', // Ganti dengan file QRIS AllPay kamu
+                qrImage: 'allpay-qris.jpg', // Ganti dengan path gambar QRIS kamu
                 enabled: true
             },
             shopeepay: {
@@ -992,6 +1024,7 @@
                         <li>Pilih <strong>${data.feature}</strong></li>
                         <li>Masukkan nomor <strong>${data.number}</strong></li>
                         <li>Konfirmasi pembayaran</li>
+                        <li><strong>Screenshot bukti transfer</strong></li>
                     </ol>
                 `;
 
@@ -1051,6 +1084,7 @@
                                 <li>Pilih fitur <strong>Scan QR Code</strong></li>
                                 <li>Arahkan kamera ke QR code di atas</li>
                                 <li>Konfirmasi pembayaran</li>
+                                <li><strong>Screenshot bukti pembayaran</strong></li>
                             </ol>
                         </div>
                     </div>
@@ -1117,6 +1151,12 @@
                         <div style="text-align: center; margin-bottom: 20px;">
                             <img src="${data.qrImage}" alt="AllPay QRIS" style="max-width: 300px; width: 100%; border-radius: 10px;">
                         </div>
+                        <div class="screenshot-reminder" style="margin: 20px 0;">
+                            <i class="fas fa-camera"></i>
+                            <h4>📸 Jangan Lupa Screenshot!</h4>
+                            <p><strong>Screenshot bukti pembayaran setelah transfer</strong></p>
+                            <p>Kirim ke admin untuk konfirmasi</p>
+                        </div>
                         <div class="instructions">
                             <h4>Scan QR Code Ini:</h4>
                             <ol>
@@ -1124,33 +1164,4 @@
                                 <li>Pilih fitur scan QRIS</li>
                                 <li>Arahkan kamera ke QR code</li>
                                 <li>Konfirmasi pembayaran</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-            setTimeout(() => modal.classList.add('show'), 10);
-
-            const closeBtn = modal.querySelector('.close-modal');
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('show');
-                setTimeout(() => modal.remove(), 300);
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('show');
-                    setTimeout(() => modal.remove(), 300);
-                }
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            new PaymentGateway();
-        });
-    </script>
-</body>
-    </html>
+                                <li><strong>Screenshot bukti pembayaran</strong></
